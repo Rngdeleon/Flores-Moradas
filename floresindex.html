@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Moradas 🌸</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e1b3ff;
+            font-family: Arial, sans-serif;
+            color: #333;
+            overflow: hidden;
+            position: relative;
+        }
+        #container {
+            text-align: center;
+            z-index: 10;
+        }
+        .button {
+            background-color: #b28dff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        #messageBox {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            margin-top: 20px;
+        }
+        .flower {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            color: #b28dff;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Flores Moradas 🌸</h1>
+        <button class="button" onclick="showMessage()">Click aquí</button>
+        <div id="messageBox">
+            <p>Hola, antes de iniciar, solo quiero recordarte que eres alguien espectacular y te amo infinitamente ❤</p>
+            <button class="button" onclick="closeMessage()">Cerrar</button>
+        </div>
+        <div id="options" style="display: none;">
+            <p>Escoge una opción:</p>
+            <button class="button" onclick="showFlower(1)">1 Flor</button>
+            <button class="button" onclick="showFlower(12)">12 Flores :)</button>
+        </div>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("messageBox").style.display = "block";
+            startFlowerAnimation();
+        }
+
+        function closeMessage() {
+            document.getElementById("messageBox").style.display = "none";
+            document.getElementById("options").style.display = "block";
+        }
+
+        function showFlower(quantity) {
+            if (quantity === 1) {
+                alert("Te envío una flor morada 🌸 para alegrarte el día!");
+            } else if (quantity === 12) {
+                alert("Te envío un ramo de 12 flores moradas 🌸🌸🌸 ¡porque te lo mereces todo!");
+            }
+        }
+
+        function startFlowerAnimation() {
+            for (let i = 0; i < 20; i++) {
+                createFlower();
+            }
+        }
+
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+            flower.textContent = "🌸";
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(flower);
+
+            flower.addEventListener("animationend", () => {
+                flower.remove();
+            });
+        }
+    </script>
+</body>
+</html>
